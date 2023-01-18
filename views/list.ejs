@@ -7,7 +7,12 @@
     <title> to do list</title>
 </head>
 <body>
-    <h1> Today is a <%= kinofDay %> </h1>
+
+    <% if (kinofDay =="Mercredi"){%>
+        <h1 style=" color : green"> Today is a <%= kinofDay %> </h1>
+<% } else{%>
+        <h1 style=" color :blue"> Today is a <%= kinofDay %> </h1>
+    <%} %>
     
 </body>
 </html>
