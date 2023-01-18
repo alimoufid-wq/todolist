@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 
 var app = express();
 var items = ["One","Two"];
+var workitems = [];
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended : true}));
@@ -22,16 +23,33 @@ app.get("/",function (req ,res) {
     };
 
     var day = today.toLocaleDateString("en-US",options);
-    res.render("list",{kinofDay:day , newlistitems:items});
+    res.render("list",{list1:day , newlistitems:items});
 
 });
 
 
 app.post("/",function (req,res) {
     var newItem = req.body.Newitem;
-    items.push(newItem);
-    res.redirect("/");
+
+    if (req.body.list == "work Day") {
+        workitems.push(newItem);
+        res.redirect("/work");
+    } else {
+        items.push(newItem);
+        res.redirect("/");
+    }
+
 })
+
+
+app.get("/work", function (req ,res) {
+    var day = "work Day"
+    res.render("list",{list1:day , newlistitems:workitems});
+
+})
+
+
+
 
 
 app.listen(3000, function () {

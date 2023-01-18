@@ -1,37 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> to do list</title>
-    <link rel="stylesheet" href="css/styles.css">
+<%- include("header")-%>
+    <div class="box">
+        <h1  id="heading"> <%= list1 %> </h1>
 
-</head>
-<body>
+    </div>
 
+    <div class="box">
+        <ul>
+            <% for (var i=0; i< newlistitems.length; i++) { %>
+                <div class="item">
+                    <input type="checkbox">
+                    <p><%= newlistitems[i] %></p>
+                </div>
+            <% } %>
+          </ul>
 
-    <h1 style=" color : green"> <%= kinofDay %> </h1>
-    <ul>
-        <% for (var i=0; i< newlistitems.length; i++) { %>
-          <li><%= newlistitems[i] %></li>
-        <% } %>
-      </ul>
+          <form class="item" action="/" method="post">
+            <input type="text" name="Newitem" placeholder="New task" autocomplete="off">
+            <button type="submit" name="list" value="<%= list1%>"> +</button>
+        </form>
+    </div>
+  
 
-    <form action="/" method="post">
-        <input type="text" name="Newitem" id="">
-        <button type="submit" name="button"> add</button>
-    </form>
-
-
+<%- include("footer")-%>
 
 
 
-    <!-- <% if (kinofDay =="Mercredi"){%>
-        <h1 style=" color : green"> Today is a <%= kinofDay %> </h1>
-<% } else{%>
-        <h1 style=" color :blue"> Today is a <%= kinofDay %> </h1>
-    <%} %> -->
-    
-</body>
-</html>
+
+
