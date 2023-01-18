@@ -7,9 +7,10 @@ var bodyParser = require("body-parser");
 
 var app = express();
 var items = ["One","Two"];
-app.set('view engine', 'ejs');
 
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(express.static("public"))
 
 
 app.get("/",function (req ,res) {
