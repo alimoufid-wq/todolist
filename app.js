@@ -6,41 +6,31 @@ var bodyParser = require("body-parser");
 
 
 var app = express();
-
+var items = ["One","Two"];
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({extended : true}));
 
 
 app.get("/",function (req ,res) {
     var today = new Date();
-    var todayDay = today.getDay();
-    var day = "";
-    if (todayDay == 6 ) {
-        day = "Saturday";
-    } 
-    if  (todayDay == 0 ) {
-        day = "Sunday";
-    } 
-    if (todayDay == 1 ) {
-        day = "Lundi";
-    } 
-    if  (todayDay == 2 ) {
-        day = "Mardi";
-    } 
-    if  (todayDay == 3 ) {
-        day = "Mercredi";
-    } 
-    if  (todayDay == 4 ) {
-        day = "jeudi";
-    } 
-    if  (todayDay == 5 ) {
-        day = "vendredi";
-    } 
-    else{
-        console.log(todayDay);
-    }
-    res.render("list",{kinofDay:day});
+    var options = {
+        weekday : "long",
+        day : "numeric",
+        month : "long"
+    };
+
+    var day = today.toLocaleDateString("en-US",options);
+    res.render("list",{kinofDay:day , newlistitems:items});
 
 });
+
+
+app.post("/",function (req,res) {
+    var newItem = req.body.Newitem;
+    items.push(newItem);
+    res.redirect("/");
+})
 
 
 app.listen(3000, function () {

@@ -8,11 +8,28 @@
 </head>
 <body>
 
-    <% if (kinofDay =="Mercredi"){%>
+
+    <h1 style=" color : green"> <%= kinofDay %> </h1>
+    <ul>
+        <% for (var i=0; i< newlistitems.length; i++) { %>
+          <li><%= newlistitems[i] %></li>
+        <% } %>
+      </ul>
+
+    <form action="/" method="post">
+        <input type="text" name="Newitem" id="">
+        <button type="submit" name="button"> add</button>
+    </form>
+
+
+
+
+
+    <!-- <% if (kinofDay =="Mercredi"){%>
         <h1 style=" color : green"> Today is a <%= kinofDay %> </h1>
 <% } else{%>
         <h1 style=" color :blue"> Today is a <%= kinofDay %> </h1>
-    <%} %>
+    <%} %> -->
     
 </body>
 </html>
